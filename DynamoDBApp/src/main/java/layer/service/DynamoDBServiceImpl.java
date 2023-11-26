@@ -88,6 +88,7 @@ public class DynamoDBServiceImpl implements DynamoDBService {
         */
 
 
+        
         // Question: Should I directly use pathParameters.get(TABLE_PARTITION_KEY) to get the user's email,
         // or is it more consistent to create a 'User' object from 'inputBody' and then extract the email from it?
 
@@ -103,6 +104,7 @@ public class DynamoDBServiceImpl implements DynamoDBService {
             updateUsersNotNullAttributes(existingUser, inputBody);
 
         } else return getJsonResponse("User not found");
+        
     }
 
     @Override
