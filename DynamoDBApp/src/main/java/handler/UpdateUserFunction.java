@@ -16,6 +16,7 @@ public class UpdateUserFunction implements RequestHandler<APIGatewayProxyRequest
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input,
                                                       final Context context) {
+        
         //TODO Implement a record update with help of DynamoDBService
         /*
         Add code that extracts parameters and body from input,
@@ -33,6 +34,7 @@ public class UpdateUserFunction implements RequestHandler<APIGatewayProxyRequest
                             + e.getClass() + "; message: " + e.getMessage(),
                     503);
         }
+        
     }
 }
 
