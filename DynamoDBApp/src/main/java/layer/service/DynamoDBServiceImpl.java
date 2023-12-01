@@ -88,23 +88,23 @@ public class DynamoDBServiceImpl implements DynamoDBService {
         */
 
 
-        
         // Question: Should I directly use pathParameters.get(TABLE_PARTITION_KEY) to get the user's email,
         // or is it more consistent to create a 'User' object from 'inputBody' and then extract the email from it?
 
         // Question: What about 'Id'? Do you mean the primary key in this context, which is the 'email' field in the User class?
 
-        var user = new Gson().fromJson(inputBody, User.class);
+        User user = new Gson().fromJson(inputBody, User.class);
         user.setEmail(pathParameters.get(TABLE_PARTITION_KEY));
 
-        var existingUser = dynamoDBMapper.load(User.class, user.getEmail());
+        User existingUser = dynamoDBMapper.load(User.class, user.getEmail());
 
         if (existingUser != null) {
 
-            updateUsersNotNullAttributes(existingUser, inputBody);
+            updateUsersNotNullAttributes(existingUser, user);
+            return new Gson().toJson(existingUser);
 
         } else return getJsonResponse("User not found");
-        
+
     }
 
     @Override
